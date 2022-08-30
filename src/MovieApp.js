@@ -8,10 +8,7 @@ function MovieApp() {
     <div className='w-full'>
         <Navbar>
         </Navbar>
-        <div className='flex flex-row w-full'>
-            <Genre className = 'basis-1/4'/>
-            <Movies className = 'basis-3/4'/>
-        </div>
+        <Movies></Movies>
     </div>
   )
 }
