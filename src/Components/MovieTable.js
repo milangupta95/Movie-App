@@ -8,17 +8,22 @@ function MovieTable(props) {
   useEffect(async function() {
     let response = await fetch("https://react-backend101.herokuapp.com/movies");
     response = await response.json();
-    setContent(response);
+    setContent(response.movies);
     setLoading(false);
   },[]);
   let searchText = props.searchText;
   let movieNumber = props.movieNumber;
   let cGenre = props.cGenre;
-
+  const deleteContent = (movieIdTBD) => {
+    let oldContent = content;
+    let newContent = oldContent.filter((movie) =>  {
+      return (movie._id != movieIdTBD)
+    });
+    setContent(newContent);
+  }
   let filteredContent;
-
   if(content != "") {
-    filteredContent = content.movies;
+    filteredContent = content;
 
     // Filter on The Basis of Genre
     
@@ -74,7 +79,7 @@ function MovieTable(props) {
                     <td className = "text-center border p-1">{movie.numberInStock}</td>
                     <td className = "text-center border p-1">{movie.dailyRentalRate}</td>
                     <td className = "text-center border p-1">
-                      <button className = "text-center border bg-red-400 p-2 hover:bg-red-500 rounded">
+                      <button className = "text-center border bg-red-400 p-2 hover:bg-red-500 rounded" onClick={() => deleteContent(movie._id)}>
                         Delete
                         </button>
                     </td>
