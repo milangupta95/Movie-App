@@ -2,52 +2,13 @@ import React from 'react'
 import {useState,useEffect} from 'react'
 
 function MovieTable(props) {
-  const [loading,setLoading] = useState(true);
-  const [content,setContent] = useState("");
-
-  useEffect(async function() {
-    let response = await fetch("https://react-backend101.herokuapp.com/movies");
-    response = await response.json();
-    setContent(response.movies);
-    setLoading(false);
-  },[]);
-  let searchText = props.searchText;
-  let movieNumber = props.movieNumber;
-  let cGenre = props.cGenre;
+  const {loading,content,filteredContent,setContent} = props;
   const deleteContent = (movieIdTBD) => {
     let oldContent = content;
     let newContent = oldContent.filter((movie) =>  {
       return (movie._id != movieIdTBD)
     });
     setContent(newContent);
-  }
-  let filteredContent;
-  if(content != "") {
-    filteredContent = content;
-
-    // Filter on The Basis of Genre
-    
-    if(cGenre != "") {
-      filteredContent = filteredContent.filter(function(movie) {
-        if(movie.genre.name == cGenre) {
-          return true;
-        } else {
-          return false;
-        }
-      })
-    }
-    //Searching
-    if(searchText != "") {
-      console.log(searchText);
-      filteredContent = content.movies.filter(function(movie) {
-        let movieinLowerCase = movie.title.toLowerCase();
-        let searchTextinLowerCase = searchText.toLowerCase();
-        return movieinLowerCase.includes(searchTextinLowerCase);
-      });
-      console.log(filteredContent);
-    }
-    // Slicing 
-    filteredContent = filteredContent.slice(0,movieNumber);
   }
 
   return (

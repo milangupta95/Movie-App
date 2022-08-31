@@ -18,7 +18,7 @@ function NewMovie(props) {
     <div>
       <Link to = "/new"><button className='bg-blue-500 p-2 border border-black-1000 rounded w-20 m-5'>New</button></Link>
       <input className = "border-2 border-black-1000 rounded m-2 h-10 p-2" type = "text" value = {searchText} name = "" id = "" onChange = {changeSearchText}/>
-      <input className = "border-2 border-black-1000 rounded m-2 h-10 p-2" type = "text" value = {numberOfMovie} name = "" id = "" onChange = {changeNumberOfMovie}/>
+      <input className = "border-2 border-black-1000 rounded m-2 h-10 p-2" type = "Number" value = {numberOfMovie} name = "" id = "" onChange = {changeNumberOfMovie}/>
     </div>
   )
 }
